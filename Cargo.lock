@@ -779,14 +779,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "minstral-experimenting"
-version = "0.1.0"
-dependencies = [
- "dotenv",
- "mistralai-client",
-]
-
-[[package]]
 name = "mio"
 version = "1.0.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -795,6 +787,14 @@ dependencies = [
  "libc",
  "wasi",
  "windows-sys 0.52.0",
+]
+
+[[package]]
+name = "mistral-experimenting"
+version = "0.1.0"
+dependencies = [
+ "dotenv",
+ "mistralai-client",
 ]
 
 [[package]]
