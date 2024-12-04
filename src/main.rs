@@ -1,6 +1,6 @@
 use std::env;
 use dotenv::dotenv;
-use rand::prelude::*;
+// use rand::prelude::*;
 
 use mistralai_client::v1::{
   chat::{
@@ -19,9 +19,21 @@ fn main() {
 		Ok(key) => {
 			match Client::new(Some(key), None, None, None) {
 				Ok(client) => {
+					let character = [
+						"You are an old woman street cook named Sheugh, and your task is to talk with people who come to your store",
+						"You have turtle pies and hog heads for sale",
+						"You are grumpy, but kind",
+						"Your intelligence is low",
+						"You love uding fancy words you don't know the meaning of",
+						"You speak in short sentences",
+						"You are talking to a squirrel",
+						"You sell high quality food",
+						"Your customer is afraid of turtles",
+					];
+
 					let mut messages: Vec<ChatMessage> = vec![ChatMessage {
 		        role: ChatMessageRole::System,
-		        content: "You are a girl named Abigale. You are fun loving. You are light hearted. You are easy going. You are romantically interested in the person you are chatting with. You flirt with them.".to_string(),
+		        content: character.join(". ").to_string(),
 		        tool_calls: None,
 			    }];
 
@@ -46,11 +58,10 @@ fn main() {
 
 										local.push(msg);
 
-										let mut rng = thread_rng();
+										// let mut rng = thread_rng();
 
 										let options = ChatParams {
-							        temperature: rng.gen(),
-							        // random_seed: Some(42),
+							        temperature: 0.0,
 							        ..Default::default()
 								    };
 
