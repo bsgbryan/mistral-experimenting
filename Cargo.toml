@@ -6,3 +6,4 @@ edition = "2021"
 [dependencies]
 dotenv = "0.15.0"
 mistralai-client = "0.14.0"
+rand = "0.8.5"

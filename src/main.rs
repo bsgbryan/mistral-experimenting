@@ -1,5 +1,6 @@
 use std::env;
 use dotenv::dotenv;
+use rand::prelude::*;
 
 use mistralai_client::v1::{
   chat::{
@@ -45,14 +46,15 @@ fn main() {
 
 										local.push(msg);
 
-										let model = Model::OpenMistral7b;
+										let mut rng = thread_rng();
+
 										let options = ChatParams {
-							        temperature: 0.0,
-							        random_seed: Some(42),
+							        temperature: rng.gen(),
+							        // random_seed: Some(42),
 							        ..Default::default()
 								    };
 
-										match client.chat(model, local, Some(options)) {
+										match client.chat(Model::OpenMistral7b, local, Some(options)) {
 											Ok(result) => {
 												for choice in result.choices {
 											    println!("Mistral: {}", choice.message.content);
