@@ -1,0 +1,8 @@
+[package]
+name = "minstral-experimenting"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dotenv = "0.15.0"
+mistralai-client = "0.14.0"
