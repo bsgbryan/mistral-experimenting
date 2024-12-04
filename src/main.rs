@@ -18,7 +18,11 @@ fn main() {
 		Ok(key) => {
 			match Client::new(Some(key), None, None, None) {
 				Ok(client) => {
-					let mut messages: Vec<ChatMessage> = vec![];
+					let mut messages: Vec<ChatMessage> = vec![ChatMessage {
+		        role: ChatMessageRole::System,
+		        content: "You are a girl named Abigale. You are fun loving. You are light hearted. You are easy going. You are romantically interested in the person you are chatting with. You flirt with them.".to_string(),
+		        tool_calls: None,
+			    }];
 
 					let mut continyou = true;
 
@@ -50,7 +54,11 @@ fn main() {
 
 										match client.chat(model, local, Some(options)) {
 											Ok(result) => {
-										    println!("Mistral: {}", result.choices[0].message.content);
+												for choice in result.choices {
+											    println!("Mistral: {}", choice.message.content);
+
+													messages.push(choice.message.clone());
+												}
 
 												if value.contains("goodbye") {
 													continyou = false;
